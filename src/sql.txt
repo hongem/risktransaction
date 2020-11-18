@@ -1,0 +1,54 @@
+create table users(
+    id NUMBER GENERATED ALWAYS AS IDENTITY primary key,
+    email varchar(30) not null,
+    password VARCHAR(100) not null,
+    acc_status varchar(20)
+);
+
+create table roles(
+    id NUMBER GENERATED ALWAYS AS IDENTITY primary key,
+    role_name varchar(20) not null
+);
+
+create table users_roles(
+    user_id Number ,
+    role_id NUMBER UNIQUE
+);
+
+   alter table users_roles
+        add constraint users_roles_fk
+        foreign key (user_id)
+        references users;
+
+   alter table users_roles
+        add constraint roles_users_fk
+        foreign key (role_id)
+        references roles;
+
+insert INTO roles(role_name) VALUES('ROLE_ADMIN');
+insert INTO roles(role_name) VALUES('ROLE_USER');
+
+
+CREATE TABLE SYS.RISKTRANSACTION
+          (	ID number(11),
+       	AMOUNT number(25,5),
+       	CODE VARCHAR2(50),
+       	CREATED TIMESTAMP(6),
+       	CURRENCY_CODE VARCHAR2(50),
+       	DISCOUNT_AMOUNT number(25,5),
+       	EMAIL NVARCHAR2(150),
+       	FULLNAME NVARCHAR2(300),
+       	PHONE_NUMBER NVARCHAR2(30),
+       	PRODUCT_CODE VARCHAR2(64),
+       	PRODUCT_NAME NVARCHAR2(380),
+       	RECEIVER_FEE number(25,5),
+       	SENDER_FEE number(25,5),
+       	SENDER_CUS_ID NUMBER(11),
+       	SERVICE_CODE VARCHAR2(100),
+       	SERVICE_ID NUMBER(11),
+       	STATUS VARCHAR2(100),
+       	UPDATED TIMESTAMP(6),
+       	VAS_PRODUCT_ID NUMBER(11),
+       	VAS_QUANTITY number(9),
+       	 PRIMARY KEY (ID)
+            );
